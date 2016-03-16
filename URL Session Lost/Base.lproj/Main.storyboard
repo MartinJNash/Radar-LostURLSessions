@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="URL_Session_Lost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,57 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eO4-EM-gNy">
+                                <rect key="frame" x="172" y="20" width="256" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRM-XP-Rod">
+                                        <rect key="frame" x="25" y="0.0" width="206" height="30"/>
+                                        <state key="normal" title="Call URL With Apple Singleton"/>
+                                        <connections>
+                                            <action selector="callWithStandardSharedSingleton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UnC-uJ-grp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYt-fp-HNk">
+                                        <rect key="frame" x="20" y="40" width="217" height="30"/>
+                                        <state key="normal" title="Call URL with Custom Singleton"/>
+                                        <connections>
+                                            <action selector="callWithCustomSingleton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fz0-Wp-7DY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7x-bd-Ckw">
+                                        <rect key="frame" x="0.0" y="80" width="256" height="30"/>
+                                        <state key="normal" title="Call URL with freshly created Session"/>
+                                        <connections>
+                                            <action selector="callWithFreshlyCreatedSession:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7qu-At-XUm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L8p-xJ-fNd">
+                                <rect key="frame" x="20" y="138" width="560" height="442"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L8p-xJ-fNd" firstAttribute="top" secondItem="eO4-EM-gNy" secondAttribute="bottom" constant="8" id="PY8-o4-32D"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="L8p-xJ-fNd" secondAttribute="bottom" constant="20" id="UU5-UK-Mk8"/>
+                            <constraint firstItem="L8p-xJ-fNd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="acY-aZ-ZJ1"/>
+                            <constraint firstItem="eO4-EM-gNy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eVQ-b3-ZLl"/>
+                            <constraint firstItem="eO4-EM-gNy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q6L-HG-RTF"/>
+                            <constraint firstItem="L8p-xJ-fNd" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="td1-ka-UZM"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="L8p-xJ-fNd" id="dDq-sw-LZJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="388" y="374"/>
         </scene>
     </scenes>
 </document>

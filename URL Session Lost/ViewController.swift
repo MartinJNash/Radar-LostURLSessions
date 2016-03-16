@@ -10,16 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var textView: UITextView!
+
+    
+    @IBAction func callWithStandardSharedSingleton(sender: AnyObject) {
+        self.textView.text = "Calling with shared singleton session\n\n"
+        URLCaller().callWithStandardSharedSession { (data, response, error) -> Void in
+            self.appendTextToTextView(error?.description ?? "(no error)")
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func callWithCustomSingleton(sender: AnyObject) {
+        self.textView.text = "Calling with custom singleton session\n\n"
+        URLCaller().callWithCustomSingletonSession { (data, response, error) -> Void in
+            self.appendTextToTextView(error?.description ?? "(no error)")
+        }
     }
-
-
+    
+    @IBAction func callWithFreshlyCreatedSession(sender: AnyObject) {
+        self.textView.text = "Calling with freshly created session\n\n"
+        URLCaller().callWithFreshlyCreatedSession { (data, response, error) -> Void in
+            self.appendTextToTextView(error?.description ?? "(no error)")
+        }
+    }
+    
+    private func appendTextToTextView(text: String) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.textView.insertText(text)
+        }
+    }
 }
 
